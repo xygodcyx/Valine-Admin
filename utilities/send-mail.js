@@ -70,6 +70,10 @@ exports.send = (currentComment, parentComment) => {
     //     || parentComment.get('mail') === process.env.SMTP_USER) {
     //     return;
     // }
+    // 自己 @ 自己不需要提醒
+    if (parentComment.get('mail') === currentComment.get('mail')) {
+        return;
+    }
     let emailSubject = '👉 叮咚！「' + process.env.SITE_NAME + '」上有人@了你';
     let emailContent = sendTemplate({
         siteName: process.env.SITE_NAME,
