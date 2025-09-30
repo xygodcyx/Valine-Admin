@@ -66,10 +66,10 @@ exports.notice = (comment) => {
 exports.send = (currentComment, parentComment) => {
 
     // 站长被 @ 不需要提醒
-    // if (parentComment.get('mail') === process.env.TO_EMAIL
-    //     || parentComment.get('mail') === process.env.SMTP_USER) {
-    //     return;
-    // }
+    if (parentComment.get('mail') === process.env.TO_EMAIL
+        || parentComment.get('mail') === process.env.SMTP_USER) {
+        return;
+    }
     // 自己 @ 自己不需要提醒
     if (parentComment.get('mail') === currentComment.get('mail')) {
         return;
