@@ -35,6 +35,8 @@ exports.notice = (comment) => {
     }
 
     let emailSubject = '👉 咚！「' + process.env.SITE_NAME + '」上有新评论了';
+
+    console.log(comment)
     let emailContent = noticeTemplate({
         siteName: process.env.SITE_NAME,
         siteUrl: process.env.SITE_URL,
