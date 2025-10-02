@@ -75,6 +75,7 @@ exports.send = (currentComment, parentComment) => {
         return;
     }
     let emailSubject = '👉 叮咚！「' + process.env.SITE_NAME + '」上有人@了你';
+    console.log(currentComment)
     let emailContent = sendTemplate({
         siteName: process.env.SITE_NAME,
         siteUrl: process.env.SITE_URL,
