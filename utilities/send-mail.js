@@ -36,13 +36,12 @@ exports.notice = (comment) => {
 
     let emailSubject = '👉 咚！「' + process.env.SITE_NAME + '」上有新评论了';
 
-    console.log(comment)
     let emailContent = noticeTemplate({
         siteName: process.env.SITE_NAME,
         siteUrl: process.env.SITE_URL,
         name: comment.get('nick'),
         text: comment.get('comment'),
-        url: process.env.SITE_URL + comment.get('url') + "#" + comment.get("pid")
+        url: process.env.SITE_URL + comment.get('url') + "#" + comment.id
     });
 
     let mailOptions = {
@@ -77,7 +76,7 @@ exports.send = (currentComment, parentComment) => {
         return;
     }
     let emailSubject = '👉 叮咚！「' + process.env.SITE_NAME + '」上有人@了你';
-    console.log(currentComment)
+
     let emailContent = sendTemplate({
         siteName: process.env.SITE_NAME,
         siteUrl: process.env.SITE_URL,
@@ -85,7 +84,7 @@ exports.send = (currentComment, parentComment) => {
         ptext: parentComment.get('comment'),
         name: currentComment.get('nick'),
         text: currentComment.get('comment'),
-        url: process.env.SITE_URL + currentComment.get('url') + "#" + currentComment.get('pid')
+        url: process.env.SITE_URL + currentComment.get('url') + "#" + currentComment.id
     });
     let mailOptions = {
         from: '"' + process.env.SENDER_NAME + '" <' + process.env.SMTP_USER + '>',
